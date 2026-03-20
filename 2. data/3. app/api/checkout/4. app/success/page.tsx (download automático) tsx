@@ -1,0 +1,29 @@
+'use client';
+import { useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { books } from '@/data/books';
+
+export default function Success() {
+  const searchParams = useSearchParams();
+  const [book, setBook] = useState<any>(null);
+
+  useEffect(() => {
+    const slug = searchParams.get('slug'); // em produção use webhook para segurança
+    if (slug) setBook(books.find(b => b.slug === slug));
+  }, [searchParams]);
+
+  if (!book) return <div className="min-h-screen flex items-center justify-center text-2xl">Carregando seu livro...</div>;
+
+  return (
+    <div className="min-h-screen bg-emerald-50 flex items-center justify-center p-6">
+      <div className="text-center max-w-md">
+        <div className="text-7xl mb-6">✅</div>
+        <h1 className="text-5xl heading-font font-bold mb-4">Compra Confirmada!</h1>
+        <p className="text-xl mb-10">O PDF foi enviado para seu e-mail e está disponível agora.</p>
+        <a href={`/pdfs/${book.pdfFile}`} download className="block bg-amber-700 text-white py-7 rounded-3xl text-2xl font-semibold hover:bg-amber-800">
+          Baixar {book.title} agora
+        </a>
+      </div>
+    </div>
+  );
+}

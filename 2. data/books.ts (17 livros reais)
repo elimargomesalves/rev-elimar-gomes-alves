@@ -1,0 +1,29 @@
+export type Book = {
+  slug: string;
+  title: string;
+  subtitle: string;
+  price: number; // centavos
+  pdfFile: string;
+  pages: number;
+  description: string;
+};
+
+export const books: Book[] = [
+  { slug: "por-que-eu-dou-meu-dizimo", title: "Por Que Eu Dou Meu Dízimo?", subtitle: "10 Razões para Viver em Fidelidade ao Deus Provedor", price: 2490, pdfFile: "por-que-eu-dou-meu-dizimo.pdf", pages: 113, description: "Obra prática e bíblica sobre o dízimo." },
+  { slug: "seis-dias-seis-mil-anos-um-proposito", title: "Seis Dias, Seis Mil Anos, Um Propósito", subtitle: "A História Sob o Governo de Deus", price: 2990, pdfFile: "seis-dias-seis-mil-anos-um-proposito.pdf", pages: 174, description: "Cronologia bíblica completa." },
+  { slug: "santidade-para-solteiros-e-casados", title: "Santidade para Solteiros e Casados", subtitle: "Um manual bíblico para uma vida cheia do Espírito", price: 3490, pdfFile: "santidade-para-solteiros-e-casados.pdf", pages: 265, description: "Escrito com a Pastora Érica." },
+  { slug: "se-deus-e-amor-por-que-existe-julgamento", title: "Se Deus É Amor, Por Que Existe Julgamento?", subtitle: "Uma investigação honesta sobre justiça e fé", price: 2790, pdfFile: "se-deus-e-amor-por-que-existe-julgamento.pdf", pages: 82, description: "Amor e justiça divina." },
+  { slug: "o-padrao-triplice-de-deus", title: "O Padrão Tríplice de Deus", subtitle: "A Ordem Divina na Criação, Revelação e Redenção", price: 3290, pdfFile: "o-padrao-triplice-de-deus.pdf", pages: 161, description: "Estudo profundo do padrão tríplice." },
+  { slug: "os-nomes-do-verbo-encarnado", title: "Os Nomes do Verbo Encarnado", subtitle: "A Revelação Progressiva da Identidade de Jesus", price: 2690, pdfFile: "os-nomes-do-verbo-encarnado.pdf", pages: 84, description: "Todos os nomes de Jesus." },
+  { slug: "arminio-e-calvino", title: "Armínio e Calvino", subtitle: "Soberania Divina, Graça e Liberdade Humana", price: 3290, pdfFile: "arminio-e-calvino.pdf", pages: 170, description: "Debate calvinismo x arminianismo." },
+  { slug: "a-palavra-e-o-mar", title: "A Palavra e o Mar", subtitle: "A Jornada de João Ferreira de Almeida", price: 2890, pdfFile: "a-palavra-e-o-mar.pdf", pages: 125, description: "Biografia do tradutor da Bíblia." },
+  { slug: "mentes-brilhantes-coracoes-rendidos", title: "Mentes Brilhantes, Corações Rendidos", subtitle: "A fé cristã por trás das grandes descobertas científicas", price: 2490, pdfFile: "mentes-brilhantes-coracoes-rendidos.pdf", pages: 67, description: "Dez cientistas que provaram a Bíblia." },
+  { slug: "entre-mitos-e-verdade", title: "Entre Mitos e Verdade", subtitle: "O Perigo de Ir Além do Que Está Escrito", price: 2790, pdfFile: "entre-mitos-e-verdade.pdf", pages: 157, description: "Alerta contra revelações extra-bíblicas." },
+  { slug: "quando-o-palacio-se-torna-o-maior-perigo", title: "Quando o Palácio Se Torna o Maior Perigo", subtitle: "O risco de chegar à promessa sem estar pronto", price: 2590, pdfFile: "quando-o-palacio-se-torna-o-maior-perigo.pdf", pages: 135, description: "Maturidade antes do sucesso." },
+  { slug: "dias-maus", title: "Dias Maus", subtitle: "Por que procrastinamos e perdemos oportunidades", price: 2390, pdfFile: "dias-maus.pdf", pages: 152, description: "Gestão bíblica do tempo." },
+  { slug: "jesus-no-alcorao", title: "Jesus no Alcorão", subtitle: "Um Chamado à Fé Sincera", price: 2690, pdfFile: "jesus-no-alcorao.pdf", pages: 107, description: "Estudo comparativo." },
+  { slug: "cristao-de-esquerda-so-se-for-no-ceu", title: "Cristão de Esquerda? Só Se For no Céu", subtitle: "Um guia bem-humorado e bíblico", price: 2290, pdfFile: "cristao-de-esquerda-so-se-for-no-ceu.pdf", pages: 96, description: "Fé x ideologia." },
+  { slug: "rompendo-correntes", title: "Rompendo Correntes", subtitle: "A Reforma Protestante e o Legado dos Reformadores", price: 2890, pdfFile: "rompendo-correntes.pdf", pages: 96, description: "500 anos de Reforma." },
+  { slug: "o-espectro-da-rebeliao", title: "O Espectro da Rebelião", subtitle: "Marxismo como religião invertida contra o Criador", price: 2990, pdfFile: "o-espectro-da-rebeliao.pdf", pages: 282, description: "Crítica espiritual ao comunismo." },
+  { slug: "eles-nao-foram-eleitos", title: "Eles Não Foram Eleitos", subtitle: "O Ministério que nasce no chamado de Cristo", price: 2490, pdfFile: "eles-nao-foram-eleitos.pdf", pages: 83, description: "Chamada ministerial bíblica." }
+];

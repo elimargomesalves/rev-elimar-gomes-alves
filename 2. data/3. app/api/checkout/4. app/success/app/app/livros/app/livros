@@ -1,0 +1,129 @@
+'use client';
+
+import { useState, useMemo } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { books, type Book } from '@/data/books';
+
+export default function LivrosPage() {
+  const [search, setSearch] = useState('');
+  const [sort, setSort] = useState<'recent' | 'price-low' | 'price-high'>('recent');
+
+  const filteredAndSortedBooks = useMemo(() => {
+    let result = [...books];
+
+    // Filtro por busca
+    if (search) {
+      const term = search.toLowerCase();
+      result = result.filter(book =>
+        book.title.toLowerCase().includes(term) ||
+        book.subtitle.toLowerCase().includes(term)
+      );
+    }
+
+    // Ordenação
+    if (sort === 'price-low') {
+      result.sort((a, b) => a.price - b.price);
+    } else if (sort === 'price-high') {
+      result.sort((a, b) => b.price - a.price);
+    }
+    // 'recent' = ordem original (mais recentes primeiro)
+
+    return result;
+  }, [search, sort]);
+
+  return (
+    <div className="min-h-screen bg-zinc-50">
+      {/* HEADER */}
+      <header className="fixed top-0 bg-white border-b z-50 w-full">
+        <div className="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-amber-700 rounded-2xl flex items-center justify-center text-white text-3xl heading-font">EG</div>
+            <span className="text-3xl font-semibold heading-font">Rev. Elimar Gomes Alves</span>
+          </div>
+          <Link href="/" className="text-amber-700 font-medium">← Voltar à Home</Link>
+        </div>
+      </header>
+
+      <div className="h-20" />
+
+      {/* TÍTULO E FILTROS */}
+      <section className="pt-12 pb-8 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div>
+              <div className="text-amber-700 font-medium tracking-widest text-sm">CATÁLOGO COMPLETO</div>
+              <h1 className="text-5xl heading-font font-semibold tracking-tighter">Todos os livros</h1>
+              <p className="text-zinc-600 mt-3">17 obras • Teologia bíblica profunda</p>
+            </div>
+
+            {/* FILTROS */}
+            <div className="flex flex-col sm:flex-row gap-4">
+              <input
+                type="text"
+                placeholder="Buscar livro..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="px-6 py-4 border border-zinc-200 rounded-3xl focus:outline-none focus:border-amber-700 w-full sm:w-80"
+              />
+
+              <select
+                value={sort}
+                onChange={(e) => setSort(e.target.value as any)}
+                className="px-6 py-4 border border-zinc-200 rounded-3xl focus:outline-none focus:border-amber-700 bg-white"
+              >
+                <option value="recent">Mais recentes</option>
+                <option value="price-low">Menor preço</option>
+                <option value="price-high">Maior preço</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* GRID DE LIVROS */}
+      <section className="max-w-7xl mx-auto px-6 pb-24">
+        {filteredAndSortedBooks.length === 0 ? (
+          <p className="text-center py-20 text-xl text-zinc-500">Nenhum livro encontrado.</p>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            {filteredAndSortedBooks.map((book) => (
+              <Link
+                key={book.slug}
+                href={`/livros/${book.slug}`}
+                className="book-card group bg-white border border-zinc-100 rounded-3xl overflow-hidden hover:border-amber-700 transition-all"
+              >
+                <div className="relative h-80 bg-zinc-100">
+                  <Image
+                    src={`https://picsum.photos/id/${100 + books.indexOf(book)}/600/800`}
+                    alt={book.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div className="p-8">
+                  <h3 className="font-semibold text-xl leading-tight mb-2 line-clamp-2">{book.title}</h3>
+                  <p className="text-zinc-500 text-sm line-clamp-2">{book.subtitle}</p>
+                  <div className="mt-6 flex justify-between items-end">
+                    <div>
+                      <span className="text-xs text-zinc-400">A PARTIR DE</span>
+                      <p className="text-3xl font-bold">R$ {(book.price / 100).toFixed(2)}</p>
+                    </div>
+                    <span className="bg-amber-700 text-white text-xs px-7 py-3 rounded-3xl font-medium group-hover:bg-amber-800 transition-colors">
+                      Ver livro
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        )}
+      </section>
+
+      {/* RODAPÉ */}
+      <footer className="bg-zinc-950 text-zinc-400 py-12 text-center text-sm">
+        © 2026 Rev. Elimar Gomes Alves — Todos os direitos reservados
+      </footer>
+    </div>
+  );
+}
